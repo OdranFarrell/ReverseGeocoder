@@ -14,7 +14,7 @@ df = pd.read_excel(file, 'Coords')
 
 geolocator = Nominatim(user_agent="http")
 
-
+#Lists
 Address = []
 Province = []
 cleaned_list = []
