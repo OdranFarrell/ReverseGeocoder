@@ -5,10 +5,12 @@ from tqdm import tqdm
 import os
 
 #Find file
-file = '/Users/odran/Desktop/Dissertation Data Work/Co-ordinates and Addresses.xlsx'
+year = '2009GPS.xlsx'
+file = pd.ExcelFile('/Users/odran/Desktop/Dissertation Data Work/' + year)
+
 
 #transform into dataframe
-df = pd.read_excel(file)
+df = pd.read_excel(file, 'Coords')
 
 geolocator = Nominatim(user_agent="http")
 
@@ -27,9 +29,9 @@ for coord in tqdm(df['Coords']):
             cleaned_list.append(string)
     province = cleaned_list[-3]
     Province.append(province)
-    time.sleep(0.2)
+    time.sleep(0.5)
 
 #Save new dataframe
-df_new = df.head(20).assign(Address=Address, Province=Province)
+df_new = df.assign(Address=Address, Province=Province)
 
-df_new.to_excel("/Users/odran/Desktop/Dissertation Data Work/ReverseGeoCodedResults.xlsx")
+df_new.to_excel("/Users/odran/Desktop/Dissertation Data Work/2009_Province.xlsx")
